@@ -1,0 +1,63 @@
+--Find names of all employees who have
+--sold over 30,000 to a single client
+SELECT
+    Employee.emp_id,
+    Employee.first_name,
+    works_with.total_sales
+FROM
+    Employee
+    JOIN works_with ON Employee.emp_id = works_with.emp_id
+WHERE
+    works_with.total_sales > 30000;--nested method
+SELECT
+    Employee.first_name,
+    Employee.last_name
+FROM
+    Employee
+WHERE
+    Employee.emp_id IN (
+        SELECT
+            works_with.emp_id
+        FROM
+            works_with
+        WHERE
+            works_with.total_sales > 30000
+    );--Find all clients who are handled by the branch
+    --that MS manages
+    --Assume you know Michael's ID
+SELECT
+    client_name
+FROM
+    client
+WHERE
+    Client.branch_id IN(
+        SELECT
+            branch_id
+        FROM
+            Branch
+        WHERE
+            mgr_id = 102
+    );--Find all clients who are handled by the branch
+    --that MS manages
+    -- Don't Assume you know Michael's ID
+SELECT
+    client_name
+FROM
+    client
+WHERE
+    Client.branch_id IN(
+        SELECT
+            branch_id
+        FROM
+            Branch
+        WHERE
+            mgr_id IN(
+                SELECT
+                    emp_id
+                FROM
+                    Employee
+                WHERE
+                    first_name = 'Michael'
+                    AND last_name = 'Scott'
+            )
+    );--
