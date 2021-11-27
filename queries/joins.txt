@@ -1,0 +1,41 @@
+--Join is used to combine row from two tables into one result based on common columns
+INSERT INTO
+    Branch
+VALUES(4, 'Buffalo', NULL, NULL);
+SELECT
+    *
+FROM
+    Branch;--Find all branches and name of their managers
+SELECT
+    Employee.emp_id,
+    CONCAT(Employee.first_name, ' ', Employee.last_name) AS Employee_Name,
+    Branch.branch_name
+FROM
+    Employee
+    JOIN Branch ON Employee.emp_id = Branch.mgr_id;--types of JOIN
+    --INNER JOIN: intersection (T1 : ABC, T2: BCD, SHOW ROWS BC)
+    --LEFT JOIN: A
+    --RIGHT JOIN: B
+    --CROSS JOIN: MANY TO MANY RELATION\
+    --Find LEFT JOIN
+SELECT
+    Employee.emp_id,
+    CONCAT(Employee.first_name, ' ', Employee.last_name) AS Employee_Name,
+    Branch.branch_name
+FROM
+    Employee
+    LEFT JOIN Branch ON Employee.emp_id = Branch.mgr_id;--FIND RIGHT JOIN
+SELECT
+    Employee.emp_id,
+    CONCAT(Employee.first_name, ' ', Employee.last_name) AS Employee_Name,
+    Branch.branch_name
+FROM
+    Employee
+    RIGHT JOIN Branch ON Employee.emp_id = Branch.mgr_id;--
+SELECT
+    Employee.emp_id,
+    CONCAT(Employee.first_name, ' ', Employee.last_name) AS Employee_Name,
+    Branch.branch_name
+FROM
+    Employee
+    CROSS JOIN Branch;--ON Employee.emp_id = Branch.mgr_id;
