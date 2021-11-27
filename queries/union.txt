@@ -1,0 +1,45 @@
+-- SQL operator to combine multiple select statement in one result
+-- Find all the employee and branch name
+SELECT
+    first_name
+FROM
+    Employee;
+SELECT
+    branch_name
+FROM
+    Branch;--combining
+SELECT
+    first_name AS Company_Names
+FROM
+    Employee
+UNION
+SELECT
+    branch_name
+FROM
+    Branch
+UNION
+SELECT
+    client_name
+FROM
+    Client;--same number of columns for union to work
+    -- Find a list of all client name and supplier name with branch id
+SELECT
+    client_name,
+    Client.branch_id
+FROM
+    Client
+UNION
+SELECT
+    supplier_name,
+    branch_supplier.branch_id
+FROM
+    branch_supplier;--Find all money spent or earned by company
+SELECT
+    salary
+FROM
+    Employee
+UNION
+SELECT
+    total_sales
+FROM
+    works_with;
