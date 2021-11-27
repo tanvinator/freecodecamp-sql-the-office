@@ -1,0 +1,28 @@
+--Defining different patterns
+--% stands for any number of characters
+--_ stands for 1 character
+--Find any clients who are an LLC
+SELECT
+    *
+FROM
+    Client
+WHERE
+    client_name LIKE '%LLC';--Find any branch supplier who are in label business
+SELECT
+    *
+FROM
+    branch_supplier
+WHERE
+    supplier_name LIKE '%lABEL%';--Find any employee born in october:
+SELECT
+    *
+FROM
+    Employee
+WHERE
+    birth_data LIKE '____-10%';--Find all the clients that may be school
+SELECT
+    *
+FROM
+    Client
+WHERE
+    client_name LIKE '%SCHOOL%';
